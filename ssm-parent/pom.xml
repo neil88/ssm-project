@@ -1,0 +1,147 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+    	http://maven.apache.org/POM/4.0.0 
+    	http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+  	<groupId>org.springframework.boot</groupId>
+  	<artifactId>spring-boot-starter-parent</artifactId>
+  	<version>1.2.0.RELEASE</version>
+  </parent>
+
+  <groupId>com.ssm</groupId>
+  <artifactId>ssm-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>ssm-parent</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.version>4.1.6.RELEASE</spring.version>
+    <ssm-project-finalName>ssm-project</ssm-project-finalName>
+  </properties>
+
+  <dependencies>
+  	<!-- spring boot-->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<!-- mysql JDBC -->
+	<dependency>
+		 <groupId>mysql</groupId>
+			 <artifactId>mysql-connector-java</artifactId>
+		 <version>5.1.39</version>
+	</dependency>
+	<!-- mysql JDBC -->
+	<!-- spring -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-core</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-jdbc</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-web</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency> 
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-webmvc</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency> 
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-beans</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId> 
+	    <artifactId>spring-aop</artifactId> 
+	    <version>${spring.version}</version> 
+	</dependency>
+	<!-- WEB begin -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jsp-api</artifactId>
+		<version>2.0</version>
+		<scope>provided</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<!-- WEB end -->
+	
+  </dependencies>
+  <profiles>
+		<!-- mysql连接 开始-->
+			<profile>
+			<id>mysqlTest</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+				<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+				<jdbc.url>jdbc:mysql://127.0.0.1:3306/likai</jdbc.url>
+				<jdbc.username>root</jdbc.username>
+				<jdbc.password>root</jdbc.password>
+				<jdbc.pool.maxIdle>50</jdbc.pool.maxIdle>
+				<jdbc.pool.maxActive>50</jdbc.pool.maxActive>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!-- mysql连接 结束 -->
+	</profiles>
+  
+  <!-- 配置远程发布到私服，mvn deploy -->
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>releases Repository</name>
+      <url>http://localhost:8881/nexus/content/repositories/releases/</url>
+    </repository> 
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>snapshots Repository</name>
+      <url>http://localhost:8881/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
+  <modules>
+  	<module>../ssm-project</module>
+  </modules>
+</project>
