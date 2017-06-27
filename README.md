@@ -8,10 +8,17 @@ springmvc + spring + mybatis +springboot  + maven 项目的搭建学习
    2、当出现存入数据库中文乱码时，先坚持整体项目的编码格式，目前选的是utf-8，
      当一切都设置好后，存入数据库仍然乱码时，坚持自己的数据库连接格式等，如使用mysql，修改my.ini
      初始化信息即可，在client添加   default-character-set=utf8  完mysql 修改default-character-set=utf8
-     修改character-set-server=utf8 即可
+     修改character-set-server=utf8 即可
 
    3、提交代码如何忽略不需要提交的东西，在工作空间加.gitignroe文件，具体内容可以根据自已要求添加：
-     最基本的如
+     最基本的如：
+         /target/
+         */.settings/
+         .classpath
+         .project
+         .gitgnore
+         *.metadata/
+         /Servers/
 
    4、当代码提交后，无法pull代码时，修改工作空间.git文件下的config文件即可，添加：
        [branch "master"] 
@@ -20,5 +27,8 @@ springmvc + spring + mybatis +springboot  + maven 项目的搭建学习
     [remote "origin"] 
         url = https://github.com/zhangxinyu2/sub-modules-springboot.git  <--------git连接地址即可
         fetch = +refs/heads/*:refs/remotes/origin/*
-    
+        
+   5、pull下的maven项目，不能用tomcat启动原因是，没有配置maven lib加载，以及资源数据的加载，如eclipse为例，点击项目配置
+      deployment assembly 配置mavenlib加载和webapp资源加载即可
+    
  
